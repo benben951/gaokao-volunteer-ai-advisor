@@ -1,0 +1,46 @@
+[
+  {
+    "school": "郑州财税金融职业学院",
+    "province": "河南",
+    "nature": "公办",
+    "subject": "history",
+    "batch": "专科批",
+    "major": "会计信息管理",
+    "score": 425,
+    "rank": 141555,
+    "tags": ["财经", "公办", "省内"]
+  },
+  {
+    "school": "长春金融高等专科学校",
+    "province": "吉林",
+    "nature": "公办",
+    "subject": "history",
+    "batch": "专科批",
+    "major": "大数据与会计",
+    "score": 410,
+    "rank": 160052,
+    "tags": ["财经", "公办", "北方"]
+  },
+  {
+    "school": "山东商务职业学院",
+    "province": "山东",
+    "nature": "公办",
+    "subject": "history",
+    "batch": "专科批",
+    "major": "大数据与审计",
+    "score": 380,
+    "rank": 198823,
+    "tags": ["财经", "公办", "北方"]
+  },
+  {
+    "school": "南阳农业职业学院",
+    "province": "河南",
+    "nature": "公办",
+    "subject": "history",
+    "batch": "专科批",
+    "major": "大数据与会计",
+    "score": 360,
+    "rank": 225037,
+    "tags": ["公办", "省内"]
+  }
+]

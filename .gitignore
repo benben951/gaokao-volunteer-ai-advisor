@@ -1,0 +1,22 @@
+node_modules/
+.env
+.env.*
+!.env.example
+dist/
+coverage/
+*.log
+
+# Real admission data is not committed.
+data/
+raw-data/
+private-data/
+*.xlsx
+*.xls
+*.csv
+*.zip
+
+# Local cloud / auth artifacts
+cloudbaserc.json
+.vercel/
+.netlify/
+*.secret
