@@ -30,6 +30,33 @@ function tier(probability, delta) {
   return "风险较高";
 }
 
+function rankStatus(rankDelta) {
+  if (rankDelta == null) return "unknown";
+  if (rankDelta < 0) return "better_than_reference";
+  if (rankDelta === 0) return "equal_to_reference";
+  return "worse_than_reference";
+}
+
+function buildWarnings(record, probability, rankDelta) {
+  const warnings = [
+    "样例数据仅用于工程演示，正式填报必须核验当年官方招生计划。",
+  ];
+
+  if (probability < 0.55) {
+    warnings.push("参考分数接近或低于往年记录，建议只作为冲刺项并配置稳妥保底。");
+  }
+
+  if (rankDelta != null && rankDelta > 0) {
+    warnings.push("当前位次弱于样例参考位次，需要重点核验近年位次波动。");
+  }
+
+  if (!record.rank) {
+    warnings.push("该样例记录缺少参考位次，排序时主要依赖分数与偏好。");
+  }
+
+  return warnings;
+}
+
 function recommend(records, profile) {
   const score = Number(profile.score);
   const rank = profile.rank ? Number(profile.rank) : null;
@@ -41,6 +68,7 @@ function recommend(records, profile) {
       const delta = score - Number(record.score || 0);
       const probability = scoreProbability(delta);
       const rankDelta = rank && record.rank ? rank - record.rank : null;
+      const status = rankStatus(rankDelta);
       const total =
         probability * 48 +
         regionScore(profile.regionPreference, record.province) * 22 +
@@ -53,6 +81,17 @@ function recommend(records, profile) {
         rankDelta,
         admitProbability: Math.round(probability * 100),
         tier: tier(probability, delta),
+        evidence: {
+          referenceScore: record.score ?? null,
+          referenceRank: record.rank ?? null,
+          scoreDelta: delta,
+          rankDelta,
+          rankStatus: status,
+          subject: record.subject,
+          batch: record.batch,
+          dataScope: "sample_data",
+        },
+        warnings: buildWarnings(record, probability, rankDelta),
         reason: [
           `近年参考分 ${record.score}`,
           record.rank ? `参考位次 ${record.rank}` : null,

@@ -19,7 +19,9 @@
 - 样例数据
 - 推荐算法 demo
 - API demo
+- 可审计的推荐证据字段
 - 数据治理说明
+- LLM 边界与防编造说明
 - 产品案例说明
 - 部署复盘文章
 
@@ -71,6 +73,18 @@ http://127.0.0.1:8787/api/recommend?score=450&rank=120000&subject=history&region
 
 返回的是样例数据结果，不代表真实完整录取结论。
 
+## 测试
+
+```bash
+npm test
+```
+
+当前测试覆盖：
+
+- 推荐结果必须带 `evidence` 和 `warnings`
+- 不允许推荐候选池外学校
+- 支持调用方限制返回数量
+
 ## 为什么不提交全量数据
 
 真实招生计划、分专业录取分数、商业平台下载数据可能涉及版权、授权、时效和隐私边界。公开仓库里直接提交全量数据，会给项目带来不必要的风险。
@@ -96,6 +110,7 @@ http://127.0.0.1:8787/api/recommend?score=450&rank=120000&subject=history&region
 
 - [系统架构](docs/ARCHITECTURE.md)
 - [数据治理](docs/DATA_GOVERNANCE.md)
+- [LLM 边界与防编造](docs/LLM_BOUNDARIES.md)
 - [腾讯云部署复盘](docs/BLOG_TENCENT_CLOUD_POSTMORTEM.md)
 - [产品案例说明](docs/PRODUCT_CASE_STUDY.md)
 - [GitHub 发布方案](docs/GITHUB_RELEASE_PLAN.md)
